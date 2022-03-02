@@ -18,7 +18,6 @@ namespace TDS.Infrastructure.StateMachine.State
         public void Exit()
         {
             UnityEngine.Debug.Log($"Exit BootstrapState");
-
         }
 
         private void EnterMenuState()
