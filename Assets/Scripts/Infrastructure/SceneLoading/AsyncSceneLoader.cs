@@ -22,7 +22,7 @@ namespace TDS.Infrastructure.SceneLoading
         {
             UnityEngine.Debug.Log($"Load AsyncSceneLoader");
             AsyncOperation waitScene = SceneManager.LoadSceneAsync(sceneName);
-
+            
             while (!waitScene.isDone) 
                 yield return null;
 

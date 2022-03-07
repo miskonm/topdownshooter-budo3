@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using TDS.Infrastructure.SceneLoading;
 using TDS.Infrastructure.StateMachine.State;
+using TDS.UI;
 
 namespace TDS.Infrastructure.StateMachine
 {
@@ -16,7 +17,8 @@ namespace TDS.Infrastructure.StateMachine
             _states = new Dictionary<Type, IState>()
             {
                 {typeof(BootstrapState), new BootstrapState(this, sceneLoader)},
-                {typeof(MenuState), new MenuState(this)},
+                {typeof(MenuState), new MenuState(this, sceneLoader)},
+                {typeof(GameState), new GameState(this)},
             };
         }
 
