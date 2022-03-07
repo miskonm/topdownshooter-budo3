@@ -11,12 +11,12 @@ namespace TDS.Infrastructure.StateMachine.State
 
         public void Enter()
         {
-            UnityEngine.Debug.Log($"Enter MenuState");
+            UnityEngine.Debug.Log($"Enter MenuState Frame <{UnityEngine.Time.frameCount}>");
         }
 
         public void Exit()
         {
-            UnityEngine.Debug.Log($"Enter MenuState");
+            UnityEngine.Debug.Log($"Enter MenuState Frame <{UnityEngine.Time.frameCount}>");
 
         }
     }
