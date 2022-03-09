@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace TDS.Game.Player
@@ -26,15 +25,8 @@ namespace TDS.Game.Player
             float horizontal = Input.GetAxis("Horizontal");
             float vertical = Input.GetAxis("Vertical");
 
-            if (horizontal != 0 || vertical != 0)
-            {
-                Vector2 direction = new Vector2(horizontal, vertical).normalized;
-                _rb.velocity = direction * _speed;
-            }
-            else
-            {
-                _rb.velocity = Vector2.zero;
-            }
+            Vector2 direction = new Vector2(horizontal, vertical).normalized;
+            _rb.velocity = direction * _speed;
         }
 
         private void Rotate()
