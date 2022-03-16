@@ -1,7 +1,5 @@
-using TDS.Infrastructure.SceneLoading;
 using TDS.Infrastructure.StateMachine;
 using TDS.Infrastructure.StateMachine.State;
-using TDS.UI;
 using TDS.Utility;
 using UnityEngine;
 
@@ -13,7 +11,7 @@ namespace TDS.Infrastructure
 
         private void Awake()
         {
-            _game = new Game(new GameStateMachine(new AsyncSceneLoader(this)));
+            _game = new Game(new GameStateMachine(Services.Services.Container, this));
             _game.StateMachine.Enter<BootstrapState>();
         
             DontDestroyOnLoad(this);

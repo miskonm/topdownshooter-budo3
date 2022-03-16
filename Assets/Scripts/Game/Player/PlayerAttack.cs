@@ -1,3 +1,5 @@
+using TDS.Game.Input;
+using TDS.Infrastructure.Services;
 using UnityEngine;
 
 namespace TDS.Game.Player
@@ -11,13 +13,20 @@ namespace TDS.Game.Player
         [SerializeField] private GameObject _bulletPrefab;
         [SerializeField] private Transform _bulletSpawnPointTransform;
 
+        private IInputService _inputService;
+
         private float _currentDelay;
-        
+
+        private void Start()
+        {
+            _inputService = Services.Container.Get<IInputService>();
+        }
+
         private void Update()
         {
             DecrementTimer(Time.deltaTime);
-
-            if (Input.GetButtonDown("Fire1") && CanShoot())
+            
+            if (_inputService.IsFireButtonClicked() && CanShoot())
                 Attack();
         }
 

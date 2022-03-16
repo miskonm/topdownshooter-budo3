@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using TDS.Infrastructure.SceneLoading;
+using TDS.Infrastructure.Services;
 using TDS.Infrastructure.StateMachine.State;
-using TDS.UI;
+using TDS.Utility;
 
 namespace TDS.Infrastructure.StateMachine
 {
@@ -12,12 +13,12 @@ namespace TDS.Infrastructure.StateMachine
 
         private IState _activeState;
 
-        public GameStateMachine(ISceneLoader sceneLoader)
+        public GameStateMachine(Services.Services services, ICoroutineRunner coroutineRunner)
         {
             _states = new Dictionary<Type, IState>()
             {
-                {typeof(BootstrapState), new BootstrapState(this, sceneLoader)},
-                {typeof(MenuState), new MenuState(this, sceneLoader)},
+                {typeof(BootstrapState), new BootstrapState(this, services, coroutineRunner)},
+                {typeof(MenuState), new MenuState(this, services.Get<ISceneLoader>())},
                 {typeof(GameState), new GameState(this)},
             };
         }
