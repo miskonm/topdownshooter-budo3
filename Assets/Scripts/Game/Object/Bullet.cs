@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using TDS.Game.Enemy;
 using UnityEngine;
 
 namespace TDS.Game.Object
@@ -7,6 +9,7 @@ namespace TDS.Game.Object
     {
         [SerializeField] private float _speed;
         [SerializeField] private float _lifeTime;
+        [SerializeField] private int _damage;
 
         private Vector3 _velocity;
 
@@ -19,6 +22,15 @@ namespace TDS.Game.Object
 
         private void Update() =>
             Move();
+
+        private void OnTriggerEnter2D(Collider2D col)
+        {
+            if (col.gameObject.CompareTag("Enemy"))
+            {
+                col.GetComponent<EnemyHealth>().ApplyDamage(_damage);
+                Kill();
+            }
+        }
 
         private void Move() =>
             transform.Translate(_velocity * Time.deltaTime);

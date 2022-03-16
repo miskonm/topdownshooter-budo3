@@ -12,20 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8af0024c8210d1e41b2726bbb1ac120d, type: 3}
   m_Name: SPLSettings
   m_EditorClassIdentifier: 
-  NeedOpenSceneOnStart: 0
+  NeedOpenSceneOnStart: 1
   StartSceneName: 0
-  NeedOpenSceneOnStop: 0
-  StopSceneName: 1
+  NeedOpenSceneOnStop: 1
+  StopSceneName: 2
   StartScene:
     SceneName: 0
     Path: Assets/Scenes/InitScene.unity
     Index: 0
     Name: InitScene
   StopScene:
-    SceneName: 1
-    Path: Assets/Scenes/MenuScene.unity
-    Index: 1
-    Name: MenuScene
+    SceneName: 2
+    Path: Assets/Scenes/GameScene.unity
+    Index: 2
+    Name: GameScene
   AllScenes:
   - SceneName: 0
     Path: Assets/Scenes/InitScene.unity
