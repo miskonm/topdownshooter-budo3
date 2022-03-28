@@ -16,14 +16,6 @@ namespace TDS.Game.Enemy
 
         private float _currentDelay;
 
-        // private void Update()
-        // {
-        //     DecrementTimer(Time.deltaTime);
-        //
-        //     if (_inputService.IsFireButtonClicked() && CanAttack())
-        //         Attack();
-        // }
-
         private void Update()
         {
             DecrementTimer(Time.deltaTime);

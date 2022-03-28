@@ -324,36 +324,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &240257837 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7669027033249950686, guid: 052965aa031e74eedb9377035331652d, type: 3}
-  m_PrefabInstance: {fileID: 7669027033219408115}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &240257838
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 240257837}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85bcb1d306f84fab9c61c43a3bd36946, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _enemy: {fileID: 240257844}
-  _maxHp: 4
---- !u!114 &240257844 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8823350417961652494, guid: 052965aa031e74eedb9377035331652d, type: 3}
-  m_PrefabInstance: {fileID: 7669027033219408115}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 240257837}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 233cc529c98d4790920267ca284f8942, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &322876261
 GameObject:
   m_ObjectHideFlags: 0
@@ -1893,9 +1863,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7609852078229258142, guid: 052965aa031e74eedb9377035331652d, type: 3}
-      propertyPath: _deathName
-      value: Death
+    - target: {fileID: 240257838, guid: 052965aa031e74eedb9377035331652d, type: 3}
+      propertyPath: _enemy
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167214190995397238, guid: 052965aa031e74eedb9377035331652d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7669027033249950659, guid: 052965aa031e74eedb9377035331652d, type: 3}
       propertyPath: m_RootOrder
@@ -1903,11 +1877,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7669027033249950659, guid: 052965aa031e74eedb9377035331652d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.41
+      value: -13.53
       objectReference: {fileID: 0}
     - target: {fileID: 7669027033249950659, guid: 052965aa031e74eedb9377035331652d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.61
+      value: -2.17
       objectReference: {fileID: 0}
     - target: {fileID: 7669027033249950659, guid: 052965aa031e74eedb9377035331652d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1945,18 +1919,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: CopEnemy
       objectReference: {fileID: 0}
-    - target: {fileID: 7669027033249950686, guid: 052965aa031e74eedb9377035331652d, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
+    - target: {fileID: 7727406449547620943, guid: 052965aa031e74eedb9377035331652d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8823350417961652494, guid: 052965aa031e74eedb9377035331652d, type: 3}
-      propertyPath: _collider2D
-      value: 
-      objectReference: {fileID: 7669027033219408116}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 052965aa031e74eedb9377035331652d, type: 3}
---- !u!58 &7669027033219408116 stripped
-CircleCollider2D:
-  m_CorrespondingSourceObject: {fileID: 7669027033249950685, guid: 052965aa031e74eedb9377035331652d, type: 3}
-  m_PrefabInstance: {fileID: 7669027033219408115}
-  m_PrefabAsset: {fileID: 0}
