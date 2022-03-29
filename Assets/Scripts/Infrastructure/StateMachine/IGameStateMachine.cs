@@ -1,9 +1,11 @@
+using TDS.Infrastructure.Services;
 using TDS.Infrastructure.StateMachine.State;
 
 namespace TDS.Infrastructure.StateMachine
 {
-    public interface IGameStateMachine
+    public interface IGameStateMachine : IService
     {
-        void Enter<TState>() where TState : IState;
+        void Enter<TState>() where TState : class, IState;
+        void Enter<TState, TPayload>(TPayload payload) where TState : class, IPayloadState<TPayload>;
     }
 }

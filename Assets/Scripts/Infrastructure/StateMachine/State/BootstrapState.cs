@@ -33,6 +33,8 @@ namespace TDS.Infrastructure.StateMachine.State
 
         private void RegisterServices(ICoroutineRunner coroutineRunner)
         {
+            _services.Register<IGameStateMachine>(_stateMachine);
+            
             _services.Register<IInputService>(new StandardInputService());
             _services.Register<ICoroutineRunner>(coroutineRunner);
             _services.Register<ISceneLoader>(new AsyncSceneLoader(_services.Get<ICoroutineRunner>()));

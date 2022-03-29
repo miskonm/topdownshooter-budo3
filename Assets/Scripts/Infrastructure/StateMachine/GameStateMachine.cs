@@ -9,25 +9,44 @@ namespace TDS.Infrastructure.StateMachine
 {
     public class GameStateMachine : IGameStateMachine
     {
-        private readonly Dictionary<Type, IState> _states;
+        private readonly Dictionary<Type, IExitableState> _states;
 
-        private IState _activeState;
+        private IExitableState _activeState;
 
         public GameStateMachine(Services.Services services, ICoroutineRunner coroutineRunner)
         {
-            _states = new Dictionary<Type, IState>()
+            _states = new Dictionary<Type, IExitableState>()
             {
                 {typeof(BootstrapState), new BootstrapState(this, services, coroutineRunner)},
-                {typeof(MenuState), new MenuState(this, services.Get<ISceneLoader>())},
+                {typeof(MenuState), new MenuState(this)},
                 {typeof(GameState), new GameState(this)},
+                {typeof(GameState), new LoadingState(this, services.Get<ISceneLoader>())},
             };
         }
 
-        public void Enter<TState>() where TState : IState
+        public void Enter<TState>() where TState : class, IState
+        {
+            TState state = ChangeState<TState>();
+            state.Enter();
+        }
+
+        public void Enter<TState, TPayload>(TPayload payload) where TState : class, IPayloadState<TPayload>
+        {
+            TState state = ChangeState<TState>();
+            state.Enter(payload);
+        }
+
+        private TState ChangeState<TState>() where TState : class, IExitableState
         {
             _activeState?.Exit();
-            _activeState = _states[typeof(TState)];
-            _activeState.Enter();
+
+            TState state = GetState<TState>();
+            _activeState = state;
+
+            return state;
         }
+
+        private TState GetState<TState>() where TState : class, IExitableState =>
+            _states[typeof(TState)] as TState;
     }
 }
