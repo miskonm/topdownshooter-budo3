@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using TDS.Infrastructure.SceneLoading;
-using TDS.Infrastructure.Services;
 using TDS.Infrastructure.StateMachine.State;
 using TDS.Utility;
 
@@ -20,7 +19,7 @@ namespace TDS.Infrastructure.StateMachine
                 {typeof(BootstrapState), new BootstrapState(this, services, coroutineRunner)},
                 {typeof(MenuState), new MenuState(this)},
                 {typeof(GameState), new GameState(this)},
-                {typeof(GameState), new LoadingState(this, services.Get<ISceneLoader>())},
+                {typeof(LoadingState), new LoadingState(this, services.Get<ISceneLoader>())},
             };
         }
 
