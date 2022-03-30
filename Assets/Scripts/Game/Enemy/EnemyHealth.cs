@@ -1,26 +1,37 @@
+using System;
+using TDS.Game.Common;
 using UnityEngine;
 
 namespace TDS.Game.Enemy
 {
-    public class EnemyHealth : MonoBehaviour
+    public class EnemyHealth : MonoBehaviour, IHealth
     {
-        [SerializeField] private Enemy _enemy;
-        
         [SerializeField] private int _maxHp;
+        public event Action OnChanged;
 
-        private int _currentHp;
+        public int CurrentHp { get; private set; }
+        public int MaxHp => _maxHp;
 
         private void Start()
         {
-            _currentHp = _maxHp;
+            CurrentHp = _maxHp;
         }
 
         public void ApplyDamage(int damage)
         {
-            _currentHp -= damage;
+            CurrentHp -= damage;
+            OnChanged?.Invoke();
 
-            if (_currentHp < 0)
-                _enemy.Die();
+            // if (_currentHp < 0)
+            // TODO: _enemyDeath.Die();
+        }
+
+        public void Heal(int healPoints)
+        {
+            CurrentHp += healPoints;
+            CurrentHp = Mathf.Max(CurrentHp, MaxHp);
+
+            OnChanged?.Invoke();
         }
     }
 }

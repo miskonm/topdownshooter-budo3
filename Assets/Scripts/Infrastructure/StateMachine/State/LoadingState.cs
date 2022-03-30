@@ -1,4 +1,7 @@
+using TDS.Game.Player;
+using TDS.Game.Ui;
 using TDS.Infrastructure.SceneLoading;
+using UnityEngine;
 
 namespace TDS.Infrastructure.StateMachine.State
 {
@@ -20,9 +23,17 @@ namespace TDS.Infrastructure.StateMachine.State
 
         private void OnLoaded()
         {
-            // TODO: Some actions
-            
+            SetupHud();
+
             _stateMachine.Enter<GameState>();
+        }
+
+        private static void SetupHud()
+        {
+            GameObject hud = GameObject.Find("HUD");
+            ActorUi actorUi = hud.GetComponentInChildren<ActorUi>();
+            PlayerHealth playerHealth = Object.FindObjectOfType<PlayerHealth>();
+            actorUi.Construct(playerHealth);
         }
 
         public void Exit()

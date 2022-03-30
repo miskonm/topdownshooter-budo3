@@ -48,7 +48,7 @@ namespace TDS.Game.Enemy
             if (playerHealth == null)
                 return;
 
-            playerHealth.CurrentHp -= _damage;
+            playerHealth.ApplyDamage(_damage);
         }
 
         private void DecrementTimer(float deltaTime) =>
