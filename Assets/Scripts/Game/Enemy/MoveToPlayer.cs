@@ -1,3 +1,4 @@
+using System;
 using TDS.Game.Player;
 using UnityEngine;
 
@@ -9,11 +10,15 @@ namespace TDS.Game.Enemy
 
         private Transform _playerTransform;
 
+        private void Awake()
+        {
+            _enemyMovement.enabled = false;
+            enabled = false;
+        }
+
         private void Start()
         {
             _playerTransform = FindObjectOfType<PlayerMovement>().transform;
-            _enemyMovement.enabled = false;
-            enabled = false;
         }
         
         private void OnEnable()
@@ -25,7 +30,7 @@ namespace TDS.Game.Enemy
         private void OnDisable()
         {
             _enemyMovement.enabled = false;
-            _enemyMovement.Reset();
+            _enemyMovement.Refresh();
         }
     }
 }

@@ -1,5 +1,5 @@
-using System;
 using System.Collections;
+using Lean.Pool;
 using TDS.Game.Enemy;
 using UnityEngine;
 
@@ -12,12 +12,23 @@ namespace TDS.Game.Object
         [SerializeField] private int _damage;
 
         private Vector3 _velocity;
+        private IEnumerator _killBulletRoutine;
+        
+        private void OnEnable()
+        {
+            _killBulletRoutine = KillBulletByLifeTime();
+            StartCoroutine(_killBulletRoutine);
+        }
+
+        private void OnDisable()
+        {
+            if (_killBulletRoutine != null)
+                StopCoroutine(_killBulletRoutine);
+        }
 
         private void Start()
         {
             _velocity = Vector3.up * _speed;
-
-            StartCoroutine(KillBulletByLifeTime());
         }
 
         private void Update() =>
@@ -43,6 +54,6 @@ namespace TDS.Game.Object
         }
 
         private void Kill() =>
-            Destroy(gameObject);
+            LeanPool.Despawn(gameObject);
     }
 }

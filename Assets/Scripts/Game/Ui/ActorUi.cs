@@ -25,7 +25,10 @@ namespace TDS.Game.Ui
             _health = health;
 
             if (_health != null)
+            {
+                HealthChanged();
                 _health.OnChanged += HealthChanged;
+            }
         }
 
         private void HealthChanged() =>

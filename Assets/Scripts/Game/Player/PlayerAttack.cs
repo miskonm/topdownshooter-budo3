@@ -1,3 +1,4 @@
+using Lean.Pool;
 using TDS.Game.Input;
 using TDS.Infrastructure.Services;
 using UnityEngine;
@@ -47,6 +48,6 @@ namespace TDS.Game.Player
             _currentDelay = _shootDelay;
 
         private void CreateBullet() =>
-            Instantiate(_bulletPrefab, _bulletSpawnPointTransform.position, _bulletSpawnPointTransform.rotation);
+            LeanPool.Spawn(_bulletPrefab, _bulletSpawnPointTransform.position, _bulletSpawnPointTransform.rotation);
     }
 }

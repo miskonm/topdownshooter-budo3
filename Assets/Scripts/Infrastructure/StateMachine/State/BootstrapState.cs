@@ -1,4 +1,6 @@
+using TDS.Game.Factory;
 using TDS.Game.Input;
+using TDS.Infrastructure.Assets;
 using TDS.Infrastructure.SceneLoading;
 using TDS.Infrastructure.Services;
 using TDS.Utility;
@@ -38,6 +40,11 @@ namespace TDS.Infrastructure.StateMachine.State
             _services.Register<IInputService>(new StandardInputService());
             _services.Register<ICoroutineRunner>(coroutineRunner);
             _services.Register<ISceneLoader>(new AsyncSceneLoader(_services.Get<ICoroutineRunner>()));
+
+            _services.Register<IAssetsService>(new AssetsService());
+            EnemyFactory enemyFactory = new EnemyFactory(_services.Get<IAssetsService>());
+            enemyFactory.Bootstrap();
+            _services.Register<IEnemyFactory>(enemyFactory);
         }
 
         private void LoadMenuScene()

@@ -6,6 +6,7 @@ namespace TDS.Game.Enemy
     {
         [SerializeField] private TriggerObserver _triggerObserver;
         [SerializeField] private EnemyFollow _enemyFollow;
+        [SerializeField] private EnemyIdleBehaviour _idleBehaviour;
 
         [Header("Raycast")]
         [SerializeField] private LayerMask _raycastMask;
@@ -16,10 +17,8 @@ namespace TDS.Game.Enemy
             _triggerObserver.OnStayed += Stay;
         }
 
-        private void Exited(Collider2D obj)
-        {
-            _enemyFollow.enabled = false;
-        }
+        private void Exited(Collider2D obj) =>
+            Follow(false);
 
         private void Stay(Collider2D other)
         {
@@ -32,7 +31,19 @@ namespace TDS.Game.Enemy
             if (hit2D.collider != null)
                 return;
 
-            _enemyFollow.enabled = true;
+            Follow(true);
+        }
+
+        private void Follow(bool isFallow)
+        {
+            _enemyFollow.enabled = isFallow;
+            EnableIdle(!isFallow);
+        }
+
+        private void EnableIdle(bool isEnabled)
+        {
+            if (_idleBehaviour != null)
+                _idleBehaviour.enabled = isEnabled;
         }
     }
 }
